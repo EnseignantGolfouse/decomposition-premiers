@@ -1,0 +1,155 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Texte.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/arrow keys left.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/arrow keys right.png" type="Texture" id=3]
+[ext_resource path="res://Divisors.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFontData" id=9]
+font_path = "res://assets/fonts/UbuntuMono_Nerd_Font_Regular.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 24
+font_data = SubResource( 9 )
+
+[sub_resource type="Theme" id=10]
+default_font = SubResource( 8 )
+
+[sub_resource type="DynamicFontData" id=11]
+font_path = "res://assets/fonts/UbuntuMono_Nerd_Font_Regular.ttf"
+
+[sub_resource type="DynamicFont" id=12]
+size = 36
+font_data = SubResource( 11 )
+
+[sub_resource type="Theme" id=13]
+default_font = SubResource( 12 )
+
+[node name="Divisors" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Result" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Result"]
+margin_right = 1024.0
+margin_bottom = 25.0
+theme = SubResource( 10 )
+
+[node name="Text" type="RichTextLabel" parent="Result"]
+margin_top = 29.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+theme = SubResource( 13 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InstructionDialog" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -278.5
+margin_top = -142.5
+margin_right = 278.5
+margin_bottom = 142.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="GridContainer" parent="InstructionDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="Dummy1" type="Label" parent="InstructionDialog/Instructions"]
+margin_right = 276.0
+margin_bottom = 25.0
+
+[node name="Dummy2" type="Label" parent="InstructionDialog/Instructions"]
+margin_left = 280.0
+margin_right = 556.0
+margin_bottom = 25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="RichTextLabel" parent="InstructionDialog/Instructions"]
+margin_top = 29.0
+margin_right = 276.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center]Prochain diviseur[/center]"
+text = "Prochain diviseur"
+
+[node name="Previous" type="RichTextLabel" parent="InstructionDialog/Instructions"]
+margin_left = 280.0
+margin_top = 29.0
+margin_right = 556.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center]Revenir en arrière[/center]"
+text = "Revenir en arrière"
+
+[node name="NextTexture" type="TextureRect" parent="InstructionDialog/Instructions"]
+margin_top = 159.0
+margin_right = 276.0
+margin_bottom = 285.0
+size_flags_horizontal = 13
+size_flags_vertical = 13
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="PreviousTexture" type="TextureRect" parent="InstructionDialog/Instructions"]
+margin_left = 280.0
+margin_top = 159.0
+margin_right = 556.0
+margin_bottom = 285.0
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="Dummy3" type="Label" parent="InstructionDialog/Instructions"]
+margin_right = 276.0
+margin_bottom = 25.0
+
+[node name="InstructionButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -120.0
+margin_bottom = 31.0
+theme = SubResource( 10 )
+text = "Contrôles"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="InstructionButton" to="." method="_on_InstructionButton_pressed"]
